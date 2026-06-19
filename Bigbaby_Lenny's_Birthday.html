@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Lenny!</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family: Arial, sans-serif;
+    overflow:hidden;
+    height:100vh;
+    background: linear-gradient(135deg,#ff9a9e,#fad0c4,#fbc2eb);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.container{
+    z-index:10;
+    color:white;
+}
+
+h1{
+    font-size:4rem;
+    animation: glow 2s infinite alternate;
+}
+
+h2{
+    margin-top:10px;
+    font-size:2rem;
+}
+
+p{
+    margin-top:20px;
+    font-size:1.2rem;
+    max-width:700px;
+    line-height:1.6;
+}
+
+@keyframes glow{
+    from{
+        text-shadow:0 0 10px white;
+    }
+    to{
+        text-shadow:
+        0 0 20px white,
+        0 0 40px #ff69b4,
+        0 0 60px #ff69b4;
+    }
+}
+
+/* Balloons */
+.balloon{
+    position:absolute;
+    bottom:-150px;
+    width:60px;
+    height:80px;
+    border-radius:50%;
+    animation: floatUp linear infinite;
+}
+
+.balloon::after{
+    content:'';
+    position:absolute;
+    width:2px;
+    height:80px;
+    background:white;
+    left:50%;
+    top:80px;
+}
+
+@keyframes floatUp{
+    from{
+        transform:translateY(0);
+    }
+    to{
+        transform:translateY(-120vh);
+    }
+}
+
+/* Confetti */
+.confetti{
+    position:absolute;
+    width:10px;
+    height:10px;
+    animation: fall linear infinite;
+}
+
+@keyframes fall{
+    from{
+        transform:translateY(-10vh) rotate(0deg);
+    }
+    to{
+        transform:translateY(110vh) rotate(720deg);
+    }
+}
+
+button{
+    margin-top:25px;
+    padding:12px 25px;
+    border:none;
+    border-radius:30px;
+    font-size:16px;
+    cursor:pointer;
+    background:white;
+    color:#ff1493;
+    font-weight:bold;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🎉 Happy Birthday Lenny! 🎉</h1>
+    <h2>💖 Wishing You Endless Joy 💖</h2>
+
+    <p>
+        Dear Lenny, today is all about celebrating the wonderful,
+        beautiful, and amazing person you are. May your day be filled
+        with happiness, laughter, love, and unforgettable memories.
+        Keep shining and chasing your dreams. Happy Birthday! 🎂✨
+    </p>
+
+    <button onclick="playMusic()">🎵 Play Birthday Music</button>
+</div>
+
+<audio id="birthdaySong">
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+</audio>
+
+<script>
+
+// Floating Balloons
+const colors = ["#ff4d6d","#ff85a2","#ffd166","#06d6a0","#118ab2","#c77dff"];
+
+for(let i=0;i<20;i++){
+    const balloon = document.createElement("div");
+    balloon.classList.add("balloon");
+
+    balloon.style.left = Math.random()*100 + "vw";
+    balloon.style.background =
+        colors[Math.floor(Math.random()*colors.length)];
+
+    balloon.style.animationDuration =
+        (8 + Math.random()*10) + "s";
+
+    balloon.style.opacity = Math.random();
+
+    document.body.appendChild(balloon);
+}
+
+// Confetti
+for(let i=0;i<150;i++){
+    const confetti = document.createElement("div");
+    confetti.classList.add("confetti");
+
+    confetti.style.left = Math.random()*100 + "vw";
+    confetti.style.background =
+        colors[Math.floor(Math.random()*colors.length)];
+
+    confetti.style.animationDuration =
+        (3 + Math.random()*5) + "s";
+
+    confetti.style.animationDelay =
+        Math.random()*5 + "s";
+
+    document.body.appendChild(confetti);
+}
+
+// Music
+function playMusic(){
+    document.getElementById("birthdaySong").play();
+}
+
+// Sparkles
+setInterval(() => {
+    const sparkle = document.createElement("div");
+
+    sparkle.innerHTML = "✨";
+    sparkle.style.position = "absolute";
+    sparkle.style.left = Math.random()*100 + "vw";
+    sparkle.style.top = Math.random()*100 + "vh";
+    sparkle.style.fontSize = (10 + Math.random()*25) + "px";
+
+    document.body.appendChild(sparkle);
+
+    setTimeout(() => sparkle.remove(), 2000);
+}, 300);
+
+</script>
+
+</body>
+</html>
